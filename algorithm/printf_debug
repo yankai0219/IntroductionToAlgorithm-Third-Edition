@@ -1,0 +1,7 @@
+#define _PRINT_DBUGE_ 1
+#if _PRINT_DEBUG_
+#define printf_debug(...) printf(__VA_ARGS__)
+#else
+#define printf_debug(...)
+#endif
+

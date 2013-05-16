@@ -1,0 +1,83 @@
+
+/*
+* CopyRight By YK
+* Data:2013/05/09
+*/
+
+#include "merge_sort.h"
+#include "common.h"
+/*set max value for two subarray AR and AL*/
+#define MAX_NUM 65535 
+void err_exit(char *fmt,...)
+{
+    va_list va;
+
+    va_start(va,fmt);
+    printf("%s:%d",__FILE__,__LINE__);
+    vprintf(fmt,va);
+    va_end(va);
+    exit(0);
+}
+int merge_sort(int *array, int p, int r)
+{
+    int q;
+    if ( p < r) {
+        q = (p + r)/2;
+        merge_sort(array, p, q);
+        merge_sort(array, q+1, r);
+        merge(array, p, q, r);
+
+    }
+
+    return 0;
+}
+
+int merge(int *array, int p, int q, int r)
+{
+    int i,j,m;
+    int l1,l2;
+    int samelen;
+    int *AL, *AR;
+
+    l1 = q - p + 1;
+    l2 = r - q;
+    samelen = (l1 > l2)? l2:l1; 
+    AL = (int*)calloc(l1, sizeof(int)+1);
+    AR = (int*)calloc(l2, sizeof(int)+1);
+    if(AL == NULL || AR == NULL) {
+       err_exit("calloc error");
+    }    
+    AL[l1] = MAX_NUM;
+    AR[l2] = MAX_NUM;
+
+   for(i = 0; i < l1; i++) {
+       AL[i] = array[p+i];
+   }
+   for(i = 0; i < l2; i++) {
+       AR[i] = array[q+1+i];
+   }
+   
+   for (i = 0, j = 0,m = p; m <= r; m++) {
+       if (AL[i] < AR[j]) {
+           array[m] = AL[i];
+           i++;
+       } else {
+           array[m] = AR[j];
+           j++;
+       }
+   }
+   
+  if(l1 < l2){
+      for ( i = 1; m < r;m++ ){
+          array[m] = AR[samelen+i];
+          i++;
+      }
+  }else {
+      for ( i = 1; m < r;m++ ){
+          array[m] = AL[samelen+i];
+          i++;
+      }
+  }
+
+   return 0;
+}
