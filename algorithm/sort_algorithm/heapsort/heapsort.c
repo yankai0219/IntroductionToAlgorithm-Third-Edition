@@ -1,4 +1,3 @@
-
 /*
 * CopyRight By YK
 * Data:2013/05/09
@@ -34,6 +33,7 @@ void max_heapify(int *array, int array_len, unsigned int i)
 void build_heap(int *array, int len)
 {
     int i;
+    /*because len/2 + 1...len are leaf node */
     for (i = len / 2; i > 0; i--) {
         max_heapify(array,len,i);
     }
