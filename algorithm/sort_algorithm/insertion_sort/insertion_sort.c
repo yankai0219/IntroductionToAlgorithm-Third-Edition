@@ -5,7 +5,11 @@
 
 #include "common.h"
 
-
+/*
+*    main idea:
+*    1) i increases in order to traverse all the array.
+*    2) j=i and tmp=array[i], j decreases , compares and insert tmp to proper position
+*/
 
 int insertion_sort(int *A, int len)
 {
