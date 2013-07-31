@@ -6,6 +6,15 @@
 #include "heapsort.h"
 #include "common.h"
 
+/*
+* Heapsort main idea:
+*     1) Build_heap: the array is a max heap
+*     2) Sort      : (1)the sort process begins from the end of array. 
+*                     (2)everytime the FIRST element (which is maxinimum) exchange with the last element.
+*                     (3)max heap the array .and go to step(2)
+*/
+
+
 void swap(int *a, int *b)
 {
     int tmp ;
